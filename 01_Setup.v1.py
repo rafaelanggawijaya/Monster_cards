@@ -4,7 +4,7 @@ pre-existing cards"""
 
 import easygui
 
-# list of cards
+# dictionary of cards
 monster_cards = {"Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25,
                                "Cunning": 15},
                  "Vexscream": {"Strength": 1, "Speed": 6, "Stealth": 21,
@@ -31,4 +31,3 @@ monster_cards = {"Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25,
 # Welcome message
 easygui.msgbox("Welcome to the Monster card "
                "Dungeon\n~~~~~~~~~~~~~~~~~~~~~~~~~~", "Welcome Traveler")
-
