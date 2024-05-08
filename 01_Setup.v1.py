@@ -31,3 +31,8 @@ monster_cards = {"Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25,
 # Welcome message
 easygui.msgbox("Welcome to the Monster card "
                "Dungeon\n~~~~~~~~~~~~~~~~~~~~~~~~~~", "Welcome Traveler")
+for card, stat in monster_cards.items():
+    print(f"{card}\nStats:")
+    for value in stat:
+        print(f"    {value}: {stat[value]}")
+    print()
