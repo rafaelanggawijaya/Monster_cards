@@ -40,3 +40,10 @@ easygui.msgbox("Welcome to the Monster card "
 #     print()
 
 # search and edit
+
+monster_search = easygui.enterbox("Please choose a monster:")
+for card, stat in monster_cards.items():
+    if monster_search in monster_cards:
+        print(monster_cards[monster_search])
+        for value, stat in monster_search:
+            print()
