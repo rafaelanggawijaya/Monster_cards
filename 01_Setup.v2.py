@@ -37,10 +37,15 @@ monster_cards = [["Stoneling", ["Strength", 7], ["Speed", 1], ["Stealth", 25],
 easygui.msgbox("Welcome to the Monster card "
                "Dungeon\n~~~~~~~~~~~~~~~~~~~~~~~~~~", "Welcome Traveler")
 
-order = 0
-for card in monster_cards:
-    print(f"{card[0]}\nStats:")
+# prints everything out
+# for card in monster_cards:
+#     # prints name
+#     print(f"{card[0]}\nStats:")
+#     # prints stat
+#     for stat in card:
+#         # stops error
+#         if stat != card[0]:
+#             print(f"    {stat[0]}: {stat[1]}")
+#     print()
 
-    for stat in card in range(1,3):
-        print(f"{stat[0]}: {stat[1]}")
-    print()
+# search and edit
