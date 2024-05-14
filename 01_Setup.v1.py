@@ -39,11 +39,27 @@ easygui.msgbox("Welcome to the Monster card "
 #         print(f"    {value}: {stat[value]}")
 #     print()
 
-# search and edit
+# search and edit (simplified could change)
 
+# searches for monster chosen
 monster_search = easygui.enterbox("Please choose a monster:")
-for card, stat in monster_cards.items():
-    if monster_search in monster_cards:
-        print(monster_cards[monster_search])
-        for value, stat in monster_search:
-            print()
+# prints monster stats for user to see
+if monster_search in monster_cards:
+    # prints name
+    print(f"{monster_search}\nStats:\n")
+    # prints stats
+    for stat, value in monster_cards[monster_search].items():
+        print(f"      {stat}: {value}")
+easygui.msgbox("The monster you have searched has its stats and name printed "
+               "below")
+# edit section
+while True:
+    change = easygui.buttonbox("What would you like to change?", choices=[
+        "Name", "Stat", "Finish"])
+    if change == "Name":
+        change_name = easygui.enterbox(f"Please enter the name you would "
+                                       f"like to"
+                                       f"change {monster_search} to:")
+        monster_cards[change_name] = monster_cards.pop(monster_search)
+    elif change == "Stat":
+        which_stat
