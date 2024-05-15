@@ -32,6 +32,23 @@ monster_cards = [["Stoneling", ["Strength", 7], ["Speed", 1], ["Stealth", 25],
 easygui.msgbox("Welcome to the Monster card "
                "Dungeon\n~~~~~~~~~~~~~~~~~~~~~~~~~~", "Welcome Traveler")
 
-order = 0
+# prints everything out
+# for card in monster_cards:
+#     # prints name
+#     print(f"{card[0]}\nStats:")
+#     # prints stat
+#     for stat in card:
+#         # stops error
+#         if stat != card[0]:
+#             print(f"    {stat[0]}: {stat[1]}")
+#     print()
+
+# search and edit
+# searches for monster chosen
+monster_search = easygui.enterbox("Please choose a monster:")
+# prints monster stats for user to see
 for card in monster_cards:
-        print(card[0])
+    if monster_search in card[0]:
+        # prints name
+        print(f"{card[0]}\nStats:\n")
+        # prints stats

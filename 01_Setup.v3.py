@@ -1,4 +1,4 @@
-"""Monster cards -Setup-
+"""Monster cards -Setup- v3
 This is just a setup which has the welcome screen and a list of the
 pre-existing cards
 Update: Wanted to trial also a different way to use a list"""

@@ -1,4 +1,4 @@
-"""Monster cards -Setup-
+"""Monster cards -Setup- v1
 This is just a setup which has the welcome screen and a list of the
 pre-existing cards"""
 
@@ -50,16 +50,37 @@ if monster_search in monster_cards:
     # prints stats
     for stat, value in monster_cards[monster_search].items():
         print(f"      {stat}: {value}")
-easygui.msgbox("The monster you have searched has its stats and name printed "
-               "below")
+    easygui.msgbox("The monster you have searched has its stats and name "
+                   "printed"
+                   "below")
+else:
+    # if name not valid
+    easygui.msgbox(f"There is no card named {monster_search}\nPlease neter "
+                   f"a valid name")
 # edit section
 while True:
+    # ask what to change
     change = easygui.buttonbox("What would you like to change?", choices=[
         "Name", "Stat", "Finish"])
+    # changes name
     if change == "Name":
         change_name = easygui.enterbox(f"Please enter the name you would "
                                        f"like to"
                                        f"change {monster_search} to:")
         monster_cards[change_name] = monster_cards.pop(monster_search)
+        # prevents error when user wants to change name and stats
+        monster_search = change_name
+    # changes stat
     elif change == "Stat":
-        which_stat
+        # Ask which stat
+        which_stat = easygui.buttonbox(f"Which stat would you like to "
+                                       f"change", choices=list(
+                                        monster_cards[monster_search].keys()))
+        # user inputs new stat
+        new_stat = easygui.integerbox(f"Please enter the new stat for "
+                                      f"{which_stat}")
+        # changes stat
+        monster_cards[monster_search][which_stat] = new_stat
+        print(monster_cards[monster_search])
+    else:
+        break
