@@ -55,7 +55,7 @@ if monster_search in monster_cards:
                    "below")
 else:
     # if name not valid
-    easygui.msgbox(f"There is no card named {monster_search}\nPlease neter "
+    easygui.msgbox(f"There is no card named {monster_search}\nPlease enter "
                    f"a valid name")
 # edit section
 while True:

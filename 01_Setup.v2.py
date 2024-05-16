@@ -49,22 +49,29 @@ easygui.msgbox("Welcome to the Monster card "
 #     print()
 
 # search and edit
-# searches for monster chosen
+# asks for user for monster they want to search
 monster_search = easygui.enterbox("Please choose a monster:")
-# prints monster stats for user to see
-# prints monster stats for user to see
-for card in monster_cards:
-    if monster_search in card[0]:
+# for if the card asked for is not in list
+found = 0
+# keeps in check which card is which
+num_card = 0
+# searches for monster chosen
+for card in monster_cards[num_card][0]:
+    if monster_search in monster_cards[num_card][0]:
         # prints name
-        print(f"{card[0]}\nStats:\n")
-    # prints stats
-    for stat in card:
-        # stops error
-        if stat != card[0]:
-            print(f"    {stat[0]}: {stat[1]}")
-    else:
-easygui.msgbox("The monster you have searched has its stats and name printed "
-               "below")
+        print(f"{monster_cards[num_card][0]}\nStats:\n")
+        # prints stats
+        for stat in monster_cards[num_card]:
+            # stops error
+            if stat != monster_cards[num_card][0]:
+                print(f"    {stat[0]}: {stat[1]}")
+        found = 1
+    num_card += 1
+if found == 0:
+    # if name not valid
+    easygui.msgbox(f"There is no card named {monster_search}\nPlease enter "
+                   f"a valid name")
+
 # edit section
 while True:
     # ask what to change
@@ -75,18 +82,26 @@ while True:
         change_name = easygui.enterbox(f"Please enter the name you would "
                                        f"like to"
                                        f"change {monster_search} to:")
-        monster_cards[change_name] = monster_cards.pop(monster_search)
+        monster_cards[num_card][0] = monster_cards.pop(monster_search)
     # changes stat
     elif change == "Stat":
         # Ask which stat
         which_stat = easygui.buttonbox(f"Which stat would you like to "
-                                       f"change", choices=list(
-            monster_cards[monster_search].keys()))
+                                       f"change",
+                                       choices=[monster_cards[num_card][1][
+                                                    0],monster_cards[
+                                           num_card][2][
+                                                    0],monster_cards[
+                                           num_card][3][
+                                                    0],monster_cards[
+                                           num_card][4][
+                                                    0]] )
+        if 
         # user inputs new stat
         new_stat = easygui.integerbox(f"Please enter the new stat for "
                                       f"{which_stat}")
         # changes stat
-        monster_cards[monster_search][which_stat] = new_stat
+        monster_cards[num_card][][which_stat] = new_stat
         print(monster_cards[monster_search])
     else:
         break
