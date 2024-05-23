@@ -1,7 +1,7 @@
-"""Monster cards -Setup- v2
+"""Monster cards -Setup- v2c
 This is just a setup which has the welcome screen and a list of the
 pre-existing cards
-Update: Did some trialling by changing the dictionary of cards to a list"""
+Update: Trialling the add new card (lists)"""
 
 import easygui
 
@@ -37,15 +37,5 @@ monster_cards = [["Stoneling", ["Strength", 7], ["Speed", 1], ["Stealth", 25],
 easygui.msgbox("Welcome to the Monster card "
                "Dungeon\n~~~~~~~~~~~~~~~~~~~~~~~~~~", "Welcome Traveler")
 
-# prints everything out
-for card in monster_cards:
-    # prints name
-    print(f"{card[0]}\nStats:")
-    # prints stat
-    for stat in card:
-        # stops error
-        if stat != card[0]:
-            print(f"    {stat[0]}: {stat[1]}")
-    print()
 
-
+# Add card
