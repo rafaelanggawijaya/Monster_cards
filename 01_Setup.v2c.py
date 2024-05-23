@@ -39,3 +39,40 @@ easygui.msgbox("Welcome to the Monster card "
 
 
 # Add card
+
+# hold new card name and stats
+new_card = []
+new_strength_store = ["Strength"]
+new_speed_store = ["Speed"]
+new_stealth_store = ["Stealth"]
+new_cunning_store = ["Cunning"]
+
+# asks and adds new monster name
+new_name = easygui.enterbox("Please enter the Monster's name")
+new_card.append(new_name)
+# asks and adds new strength stat
+new_strength = easygui.integerbox("Please enter the strength stat for this "
+                                  "card")
+new_strength_store.append(new_strength)
+# asks and adds speed stat
+new_speed = easygui.integerbox("Please enter the speed stat for this card")
+new_speed_store.append(new_speed)
+# asks and adds stealth stat
+new_stealth = easygui.integerbox("Please enter the stealth stat for this card")
+new_stealth_store.append(new_stealth)
+# asks and adds cunning stat
+new_cunning = easygui.integerbox("Please enter the cunning stat for this card")
+new_cunning_store.append(new_cunning)
+
+# adds stats to the new_cards list (which will be added together in
+# monster_cards
+new_card.append(new_strength_store)
+new_card.append(new_speed_store)
+new_card.append(new_stealth_store)
+new_card.append(new_cunning_store)
+# adds new card to list of cards
+monster_cards.append(new_card)
+
+# testing
+print(new_card)
+print(monster_cards[10])
