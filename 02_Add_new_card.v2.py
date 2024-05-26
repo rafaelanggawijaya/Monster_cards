@@ -95,8 +95,17 @@ while True:
                 "The monster you have searched has its stats and name "
                 "printed"
                 "below")
-            check = easygui.butt
-
+            check = easygui.buttonbox("Would you like to:", "Final step",
+                                      ["Finish", "Edit", "Cancel"])
+            if check == "Finish":
+                monster_cards.update(new_card)
+                new_card.clear()
+                break
+            elif "Edit":
+                easygui.buttonbox()
+            else:
+                new_card.clear()
+                break
     # when user chooses search/edit
     elif option == "Search for a Monster":
         print("Search for a monster")
