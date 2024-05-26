@@ -32,17 +32,22 @@ monster_cards = {"Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25,
 easygui.msgbox("Welcome to the Monster card "
                "Dungeon\n~~~~~~~~~~~~~~~~~~~~~~~~~~", "Welcome Traveler")
 
-option = easygui.buttonbox("Choose what you want to do, Traveler",
-                           "Choose Wisely",
-                           ["Add New Monster", "Search for a Monster",
-                            "Destroy a Monster", "Show all Monsters", "Exit"])
-if option == "Add New Monster":
-    print("Add New monster")
-elif option == "Search for a Monster":
-    print("Search for a monster")
-elif option == "Destroy a Monster":
-    print("Destroy a Monster")
-elif option == "Show all Monsters":
-    print("Show all Monsters")
-else:
-    print("Exit")
+# Menu/options
+while True:
+    # asks what the user wants to do
+    option = easygui.buttonbox("Choose what you want to do, Traveler",
+                               "Choose Wisely",
+                               ["Add New Monster", "Search for a Monster",
+                                "Destroy a Monster", "Show all Monsters", "Exit"])
+    # when user chooses add card
+    if option == "Add New Monster":
+        print("Add New monster")
+    # when
+    elif option == "Search for a Monster":
+        print("Search for a monster")
+    elif option == "Destroy a Monster":
+        print("Destroy a Monster")
+    elif option == "Show all Monsters":
+        print("Show all Monsters")
+    else:
+        print("Exit")
