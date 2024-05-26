@@ -2,7 +2,7 @@
 A catalogue containing monster
 cards which can be edited, deleted and added, also the whole list can be
 printed out
-Update: Using setup v1c"""
+Update: Using setup v1"""
 
 import easygui
 

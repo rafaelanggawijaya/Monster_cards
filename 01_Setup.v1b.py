@@ -76,6 +76,5 @@ while True:
                                       f"{which_stat}")
         # changes stat
         monster_cards[monster_search][which_stat] = new_stat
-        print(monster_cards[monster_search])
     else:
         break
