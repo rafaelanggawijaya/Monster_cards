@@ -1,7 +1,6 @@
-"""Monster cards -menu- v1
-This component gives control which part the
-user wants to use and allows the user to pick them
-Update:"""
+"""Monster cards -add new card- v1
+This component allows the user to add new cards to the card list
+Update: added, add card code from trialing """
 
 import easygui
 
@@ -39,10 +38,37 @@ while True:
     option = easygui.buttonbox("Choose what you want to do, Traveler",
                                "Choose Wisely",
                                ["Add New Monster", "Search for a Monster",
-                                "Destroy a Monster", "Show all Monsters", "Exit"])
+                                "Destroy a Monster", "Show all Monsters",
+                                "Exit"])
     # when user chooses add card
     if option == "Add New Monster":
-        print("Add New monster")
+        # add card
+
+        # asks for name
+        name = easygui.enterbox(
+            "Enter the name of the Monster you would like to add")
+        # makes a dictionary for that cards name
+        monster_cards[name] = {}
+
+        # ask user for strength stat and adds strength stats
+        strength = easygui.enterbox(
+            "Please enter the strength stat for this card")
+        monster_cards[name]["Strength"] = strength
+
+        # ask user for speed stat and adds speed stats
+        speed = easygui.enterbox("Please enter the speed stat for this card")
+        monster_cards[name]["Speed"] = speed
+
+        # ask user for stealth stat and adds stealth stats
+        stealth = easygui.enterbox(
+            "Please enter the stealth stat for this card")
+        monster_cards[name]["Stealth"] = stealth
+
+        # ask user for Cunning stat and adds cunning stats
+        cunning = easygui.enterbox(
+            "Please enter the strength stat for this card")
+        monster_cards[name]["Cunning"] = cunning
+
     # when user chooses search/edit
     elif option == "Search for a Monster":
         print("Search for a monster")

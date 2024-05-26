@@ -29,15 +29,7 @@ easygui.msgbox("Welcome to the Monster card "
                "Dungeon\n~~~~~~~~~~~~~~~~~~~~~~~~~~", "Welcome Traveler")
 
 
-# add card
+menu = {"gay": {"Wow": 1, "huh": 10}}
 
-# makes dictionary for tha combo
-name = easygui.enterbox("Enter the name of the combo you would like to "
-                             "add")
-monster_cards[name] = {}
-# adds food
-
-strength = easygui.enterbox("Please enter a food for this combo")
-monster_cards[name]["Strength"] = strength
-# adds price
-print(monster_cards[name])
+monster_cards.update(menu)
+print(monster_cards)
