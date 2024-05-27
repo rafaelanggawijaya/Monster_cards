@@ -1,7 +1,7 @@
-"""Monster cards -add new card- v2
+"""Monster cards -add new card- v3
 This component allows the user to add new cards to the card list
-Update: added an option to cancel and change new card stats if need be (
-confirmation """
+Update: added upperbound and lower bound for stats change and used a while
+loop to make code more efficient when asking for stats  """
 
 import easygui
 
