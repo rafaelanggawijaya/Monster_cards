@@ -27,7 +27,6 @@ monster_cards = {"Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25,
                  "Wispghoul": {"Strength": 17, "Speed": 19, "Stealth": 3,
                                "Cunning": 2}}
 
-
 # Main routine
 
 # Welcome message
@@ -51,7 +50,10 @@ while True:
         stop = True
 
         new_card = {}
-        while stop is True:
+        while stop:
+            # kills loop if other options like cancel or finish occur later on
+            if stop is False:
+                break
             # asks for name
             name = easygui.enterbox(
                 "Enter the name of the Monster you would like to add")
@@ -59,39 +61,18 @@ while True:
             if name is None:
                 break
             # makes a dictionary for that cards name
-            new_card[name] = {}
-
-            # ask user for strength stat and adds strength stats
-            strength = easygui.enterbox(
-                "Please enter the strength stat for this card")
-            # if user wants to cancel
-            if strength is None:
+            new_card[name] = {"Strength": 0, "Speed": 0, "Stealth": 0,
+                              "Cunning": 0}
+            for stat_name, stats in new_card[name].items():
+                new_stat = easygui.integerbox(
+                    f"Please enter the {stat_name} "
+                    f"for this monster")
+                if new_stat is None:
+                    stop = False
+                    break
+                new_card[name][stat_name] = new_stat
+            if stop is False:
                 break
-            new_card[name]["Strength"] = strength
-
-            # ask user for speed stat and adds speed stats
-            speed = easygui.enterbox("Please enter the speed stat for this "
-                                     "card")
-            # if user wants to cancel
-            if speed is None:
-                break
-            new_card[name]["Speed"] = speed
-
-            # ask user for stealth stat and adds stealth stats
-            stealth = easygui.enterbox(
-                "Please enter the stealth stat for this card")
-            # if user wants to cancel
-            if stealth is None:
-                break
-            new_card[name]["Stealth"] = stealth
-
-            # ask user for Cunning stat and adds cunning stats
-            cunning = easygui.enterbox(
-                "Please enter the Cunning stat for this card")
-            # if user wants to cancel
-            if cunning is None:
-                break
-            new_card[name]["Cunning"] = cunning
             # prints name
             print(f"{name}\nStats:\n")
             # prints stats
@@ -116,7 +97,7 @@ while True:
                     # breaks loop
                     stop = False
                     break
-                elif "Edit":
+                elif check == "Edit":
                     # if user wants to edit new card
                     what_edit = easygui.buttonbox("What would you like "
                                                   "to "
@@ -151,7 +132,7 @@ while True:
                         # changes stat
                         new_card[name][what_stat] = change_stat
                 # if user wants to cancel adding new card
-                else:
+                elif check == "Cancel":
                     # clears new card ist for next use and breaks loop
                     new_card.clear()
                     stop = False
