@@ -1,7 +1,8 @@
-"""Monster cards -add new card- v3
+"""Monster cards -add new card- v4
 This component allows the user to add new cards to the card list
-Update: added upperbound and lower bound for stats change and used a while
-loop to make code more efficient when asking for stats  """
+Update: change part into a function which makes breaking the loop much
+easier instead of using an extra variable
+Added: Upper and lower bound of 1 and 25 for stats to fit requirement"""
 
 import easygui
 
@@ -27,49 +28,46 @@ monster_cards = {"Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25,
                  "Wispghoul": {"Strength": 17, "Speed": 19, "Stealth": 3,
                                "Cunning": 2}}
 
+
 # Functions
 def add_card():
     # add card
 
-    # stop reset
-    stop = True
-
     new_card = {}
-    while stop:
-        # kills loop if other options like cancel or finish occur later on
-        if stop is False:
-            break
+    while True:
         # asks for name
         name = easygui.enterbox(
             "Enter the name of the Monster you would like to add")
         # if user wants to cancel
         if name is None:
-            break
+            return
         # makes a dictionary for that cards name
         new_card[name] = {"Strength": 0, "Speed": 0, "Stealth": 0,
                           "Cunning": 0}
         for stat_name, stats in new_card[name].items():
             new_stat = easygui.integerbox(
                 f"Please enter the {stat_name} "
-                f"for this monster")
+                f"for this monster", upperbound=25, lowerbound=1)
             if new_stat is None:
-                stop = False
-                break
+                new_card.clear()
+                return
             new_card[name][stat_name] = new_stat
-        if stop is False:
-            break
-        # prints name
-        print(f"{name}\nStats:\n")
-        # prints stats
-        for stat, value in new_card[name].items():
-            print(f"      {stat}: {value}")
-        easygui.msgbox(
-            "The monster you have searched has its stats and name "
-            "printed"
-            "below")
-        # checks if user is done or wants to make new edits or wants to
-        # cancel
         while True:
+            # prints name
+            print(f"{name}\n")
+            # prints ~ line for aesthetics
+            print("~" * len(name))
+            print()
+            # prints stats
+            for stat, value in new_card[name].items():
+                print(f"      {stat}: {value}")
+            print()
+            easygui.msgbox(
+                "The monster you have searched has its stats and name "
+                "printed"
+                "below")
+            # checks if user is done or wants to make new edits or wants to
+            # cancel
             check = easygui.buttonbox("Would you like to:",
                                       "Final step",
                                       ["Finish", "Edit", "Cancel"])
@@ -80,8 +78,7 @@ def add_card():
                 # clears new card ist for next use
                 new_card.clear()
                 # breaks loop
-                stop = False
-                break
+                return
             elif check == "Edit":
                 # if user wants to edit new card
                 what_edit = easygui.buttonbox("What would you like "
@@ -99,6 +96,7 @@ def add_card():
                                                    "Name Change")
                     # changes name
                     new_card[name_change] = new_card.pop(name)
+                    name = name_change
                 elif what_edit == "Stats":
                     # asks which stat
                     what_stat = easygui.buttonbox("Which stat of "
@@ -113,15 +111,16 @@ def add_card():
                     # asks for change for that stat
                     change_stat = easygui.integerbox(f"Enter the new "
                                                      f"stat for "
-                                                     f"{what_stat}")
+                                                     f"{what_stat}",
+                                                     upperbound=25,
+                                                     lowerbound=1)
                     # changes stat
                     new_card[name][what_stat] = change_stat
             # if user wants to cancel adding new card
             elif check == "Cancel":
                 # clears new card ist for next use and breaks loop
                 new_card.clear()
-                stop = False
-                break
+                return
 
 
 # Main routine

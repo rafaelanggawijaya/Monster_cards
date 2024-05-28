@@ -1,3 +1,9 @@
+"""Monster cards v2 By Rafael Anggawijaya
+A catalogue containing monster
+cards which can be edited, deleted and added, also the whole list can be
+printed out
+Update: added menu"""
+
 import easygui
 
 # dictionary of cards
@@ -22,27 +28,30 @@ monster_cards = {"Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25,
                  "Wispghoul": {"Strength": 17, "Speed": 19, "Stealth": 3,
                                "Cunning": 2}}
 
+# Main routine
 
-# Functions
-def add_card():
-    # add card
-
-    new_card = {}
-    while True:
-        # asks for name
-        name = easygui.enterbox(
-            "Enter the name of the Monster you would like to add")
-        # if user wants to cancel
-        if name is None:
-            return
-        # makes a dictionary for that cards name
-        new_card[name] = {"Strength": 0, "Speed": 0, "Stealth": 0,
-                          "Cunning": 0}
-        for stat_name, stats in new_card[name].items():
-            new_stat = easygui.integerbox(
-                f"Please enter the {stat_name} "
-                f"for this monster", upperbound=25, lowerbound=1)
-        print(name)
-        print(new_card[name])
-
-add_card()
+# Welcome message
+easygui.msgbox("Welcome to the Monster card "
+               "Dungeon\n~~~~~~~~~~~~~~~~~~~~~~~~~~", "Welcome Traveler")
+# Menu/options
+while True:
+    # asks what the user wants to do
+    option = easygui.buttonbox("Choose what you want to do, Traveler",
+                               "Choose Wisely",
+                               ["Add New Monster", "Search for a Monster",
+                                "Destroy a Monster", "Show all Monsters", "Exit"])
+    # when user chooses add card
+    if option == "Add New Monster":
+        print("Add New monster")
+    # when user chooses search/edit
+    elif option == "Search for a Monster":
+        print("Search for a monster")
+    # when user chooses delete card
+    elif option == "Destroy a Monster":
+        print("Destroy a Monster")
+    # when user chooses show all cards
+    elif option == "Show all Monsters":
+        print("Show all Monsters")
+    # when user wants to exit program
+    else:
+        print("Exit")
