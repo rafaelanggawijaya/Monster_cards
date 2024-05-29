@@ -39,7 +39,8 @@ while True:
     option = easygui.buttonbox("Choose what you want to do, Traveler",
                                "Choose Wisely",
                                ["Add New Monster", "Search for a Monster",
-                                "Destroy a Monster", "Show all Monsters", "Exit"])
+                                "Destroy a Monster", "Show all Monsters",
+                                "Exit"])
     # when user chooses add card
     if option == "Add New Monster":
         print("Add New monster")
