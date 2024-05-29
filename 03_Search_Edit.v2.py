@@ -1,7 +1,8 @@
-"""Monster cards -Search and edit- v1
+"""Monster cards -Search and edit- v2
 This the search engine which allows the user to search for a monster to view
 change and delete
-Update:"""
+Update: I added a list which can hold edits and if user wants to cancel
+edite it can be deleted so changes never occurred"""
 
 import easygui
 
@@ -47,6 +48,10 @@ while True:
     # when user chooses search/edit
     elif option == "Search for a Monster":
         # search for a monster/edit
+
+        # holds edits
+        edited_card = {"name": {"Strength": 0, "Speed": 0, "Stealth": 0,
+                                "Cunning": 0}}
         while True:
             monster_search = easygui.enterbox("Please choose a monster, "
                                               "Traveler:", "Searching for "
@@ -58,19 +63,24 @@ while True:
                 # prints stats
                 for stat, value in monster_cards[monster_search].items():
                     print(f"      {stat}: {value}")
+                # adds name for edit dictionary
+                edited_card[monster_search] = edited_card.pop("name")
                 easygui.msgbox(
                     "The monster you have searched has its stats and name "
                     "printed"
                     "below")
                 while True:
+                    # asks user what they will do to searched monster
                     do_what = easygui.buttonbox("What would you like to do, "
                                                 "Traveler",
                                                 "What are you gong "
                                                 "to do?",
                                                 choices=["Finish", "Edit",
                                                          "Delete"])
+                    # if user is finished/ just wanted to view the monster
                     if do_what == "Finish":
                         break
+                    # if user wants to edit the monster
                     elif do_what == "Edit":
 
                         # edit section
@@ -112,8 +122,9 @@ while True:
                                     which_stat] = new_stat
                             else:
                                 break
+                    # when user chooses delete card
                     elif do_what == "Delete":
-                        # when user chooses delete card
+                        # deletes card
                         del monster_cards[monster_search]
                         easygui.msgbox(
                             f"The monster, {monster_search} has been "
