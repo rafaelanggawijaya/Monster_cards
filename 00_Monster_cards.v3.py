@@ -54,7 +54,7 @@ def add_card():
             new_card[name][stat_name] = new_stat
         while True:
             # prints name
-            print(f"{name}\n")
+            print(f"{name}")
             # prints ~ line for aesthetics
             print("~" * len(name))
             print()
