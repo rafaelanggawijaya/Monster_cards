@@ -57,13 +57,13 @@ def add_card():
             print(f"{name}")
             # prints ~ line for aesthetics
             print("~" * len(name))
-            print()
+            print("Stats:")
             # prints stats
             for stat, value in new_card[name].items():
                 print(f"      {stat}: {value}")
             print()
             easygui.msgbox(
-                "The monster you have searched has its stats and name "
+                "The monster you have added has its stats and name "
                 "printed"
                 "below")
             # checks if user is done or wants to make new edits or wants to
@@ -91,7 +91,7 @@ def add_card():
                     name_change = easygui.enterbox("What would you "
                                                    "like "
                                                    "to change this "
-                                                   "monsters"
+                                                   "monster's "
                                                    "name to?",
                                                    "Name Change")
                     # changes name
