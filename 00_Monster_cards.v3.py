@@ -37,7 +37,10 @@ def add_card():
     while True:
         # asks for name
         name = easygui.enterbox(
-            "Enter the name of the Monster you would like to add")
+            "Enter the name of the Monster you would like to add",
+            "Name of "
+            "the "
+            "Monster")
         # if user wants to cancel
         if name is None:
             return
@@ -47,7 +50,8 @@ def add_card():
         for stat_name, stats in new_card[name].items():
             new_stat = easygui.integerbox(
                 f"Please enter the {stat_name} "
-                f"for this monster", upperbound=25, lowerbound=1)
+                f"for this monster", upperbound=25, lowerbound=1,
+                title=f"{stat_name} Stat")
             if new_stat is None:
                 new_card.clear()
                 return
@@ -64,8 +68,8 @@ def add_card():
             print()
             easygui.msgbox(
                 "The monster you have added has its stats and name "
-                "printed"
-                "below")
+                "printed "
+                "below", "Look below")
             # checks if user is done or wants to make new edits or wants to
             # cancel
             check = easygui.buttonbox("Would you like to:",
