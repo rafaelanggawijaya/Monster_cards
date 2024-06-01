@@ -2,9 +2,8 @@
 A catalogue containing monster
 cards which can be edited, deleted and added, also the whole list can be
 printed out
-Update: added, search and edit function from search_edit and decided to
-remove the delete all option and put it under search and edit also made the
-exit option break the loop to exit program"""
+Update: added, print all part and added print_card function which can
+shorten code for add card, search and edit and print all"""
 
 import easygui
 
@@ -61,15 +60,7 @@ def add_card():
                 return
             new_card[name][stat_name] = new_stat
         while True:
-            # prints name
-            print(f"{name}")
-            # prints ~ line for aesthetics
-            print("~" * len(name))
-            print("Stats:")
-            # prints stats
-            for stat, value in new_card[name].items():
-                print(f"      {stat}: {value}")
-            print()
+            print_card(new_card, name)
             easygui.msgbox(
                 "The monster you have added has its stats and name "
                 "printed "
@@ -154,17 +145,10 @@ def search_edit_delete():
         monster_change = monster_search
         # prints monster stats for user to see
         if monster_search in monster_cards:
-            # prints name
-            print(f"{monster_search}")
-            # prints ~ line for aesthetics
-            print("~" * len(monster_search))
-            print("Stats:")
-            # prints stats
-            for stat, value in monster_cards[monster_search].items():
-                print(f"      {stat}: {value}")
-                # adds the entire dictionary under the monster name in
-                # edited_card
-                edited_card[monster_search] = monster_cards[monster_search]
+            print_card(monster_cards, monster_search)
+            # adds the entire dictionary under the monster name in
+            # edited_card
+            edited_card[monster_search] = monster_cards[monster_search]
             easygui.msgbox(
                 "The monster you have searched has its stats and name "
                 "printed "
@@ -243,8 +227,8 @@ def search_edit_delete():
                     print("~" * len(monster_search))
                     print("Stats:")
                     # prints stats
-                    for stat, value in edited_card[monster_search].items():
-                        print(f"      {stat}: {value}")
+                    for stats, value in edited_card[monster_search].items():
+                        print(f"      {stats}: {value}")
                     easygui.msgbox(f"Changes to {monster_search} has "
                                    f"been printed below")
                 # when user chooses delete card
@@ -261,6 +245,19 @@ def search_edit_delete():
                 f"There is no Monster named {monster_search}\nPlease "
                 f"enter "
                 f"a valid name", "Error")
+
+
+# print_card
+def print_card(dictionary, identifier):
+    # prints name
+    print(f"{identifier}")
+    # prints ~ line for aesthetics
+    print("~" * len(identifier))
+    print("Stats:")
+    # prints stats
+    for stats, value in dictionary[identifier].items():
+        print(f"      {stats}: {value}")
+    print()
 
 
 # Main routine
@@ -284,7 +281,9 @@ while True:
         search_edit_delete()
     # when user chooses show all cards
     elif option == "Show all Monsters":
-        print("Show all Monsters")
+        # prints out all cards
+        for card, stat in monster_cards.items():
+            print_card(monster_cards, card)
     # when user wants to exit program
     else:
         break
