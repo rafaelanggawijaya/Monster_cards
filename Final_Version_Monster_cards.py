@@ -208,16 +208,23 @@ def search_edit_delete():
                             f"Please enter the name you would "
                             f"like to "
                             f"change {monster_search} to:", "Name Change")
-                        edited_card[change_name] = edited_card.pop(
-                            monster_search)
-                        # prevents error when user wants to change name
-                        # and stats
-                        monster_search = change_name
-                        # shows changes
-                        print("Changes made:\n")
-                        print_card(edited_card, monster_search)
-                        easygui.msgbox(f"Changes to {monster_search} has "
-                                       f"been printed below", "Look down")
+                        if change_name:
+                            edited_card[change_name] = edited_card.pop(
+                                monster_search)
+                            # prevents error when user wants to change name
+                            # and stats
+                            monster_search = change_name
+                            # shows changes
+                            print("Changes made:\n")
+                            print_card(edited_card, monster_search)
+                            easygui.msgbox(f"Changes to {monster_search} "
+                                           f"has "
+                                           f"been printed below",
+                                           "Look down")
+                        # if cancelled
+                        elif change_name is None:
+                            easygui.msgbox("No changes were made",
+                                           "Cancelled")
                     # changes stat
                     elif change == "Stat":
                         # Ask which stat
@@ -234,19 +241,26 @@ def search_edit_delete():
                             f"Please enter the new "
                             f"stat for "
                             f"{which_stat}", "Stat Change")
-                        # changes stat
-                        edited_card[monster_search][
-                            which_stat] = new_stat
-                        # shows changes
-                        print("Changes made:\n")
-                        print_card(edited_card, monster_search)
-                        easygui.msgbox(f"Changes to {monster_search} has "
-                                       f"been printed below", "Look down")
+                        if new_stat:
+                            # changes stat
+                            edited_card[monster_search][
+                                which_stat] = new_stat
+                            # shows changes
+                            print("Changes made:\n")
+                            print_card(edited_card, monster_search)
+                            easygui.msgbox(f"Changes to {monster_search} "
+                                           f"has "
+                                           f"been printed below",
+                                           "Look down")
+                        # if cancelled
+                        elif new_stat is None:
+                            easygui.msgbox("No changes were made",
+                                           "Cancelled")
                     else:
                         if edited_card:
                             # checks if user wants to keep edits
                             confirm_edits = (easygui.
-                                             choicebox("Would you "
+                                             buttonbox("Would you "
                                                        "like to keep "
                                                        "changes?",
                                                        title="Confirmation",
