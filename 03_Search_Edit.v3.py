@@ -1,4 +1,4 @@
-"""Monster cards -Search and edit- v2
+"""Monster cards -Search and edit- v3
 This the search engine which allows the user to search for a monster to view
 change and delete
 Update: Turned this part to a function to use return to break the loop more
@@ -41,6 +41,9 @@ def search_edit_delete():
         monster_search = easygui.enterbox("Please choose a monster, "
                                           "Traveler:", "Searching for "
                                                        "Monster")
+        # if user cancels
+        if monster_search is None:
+            break
         # for later use if name is changed which helps add back changes
         monster_change = monster_search
         # prints monster stats for user to see

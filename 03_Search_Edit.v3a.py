@@ -1,9 +1,7 @@
-"""Monster cards v4 By Rafael Anggawijaya
-A catalogue containing monster
-cards which can be edited, deleted and added, also the whole list can be
-printed out
-Update: added, print all part and added print_card function which can
-shorten code for add card, search and edit and print all"""
+"""Monster cards -Search and edit- v3a
+This the search engine which allows the user to search for a monster to view
+change and delete
+Trialing: Seeing how Choicebox may work for this component"""
 
 import easygui
 
@@ -32,105 +30,6 @@ monster_cards = {"Stoneling": {"Strength": 7, "Speed": 1, "Stealth": 25,
 
 # Functions
 
-# add card
-def add_card():
-    # add card
-
-    new_card = {}
-    while True:
-        # asks for name
-        name = easygui.enterbox(
-            "Enter the name of the Monster you would like to add",
-            "Name of "
-            "the "
-            "Monster")
-        # if user wants to cancel
-        if name is None:
-            return
-        # makes a dictionary for that cards name
-        new_card[name] = {"Strength": 0, "Speed": 0, "Stealth": 0,
-                          "Cunning": 0}
-        for stat_name, stats in new_card[name].items():
-            new_stat = easygui.integerbox(
-                f"Please enter the {stat_name} "
-                f"for this monster", upperbound=25, lowerbound=1,
-                title=f"{stat_name} Stat")
-            if new_stat is None:
-                new_card.clear()
-                return
-            new_card[name][stat_name] = new_stat
-        while True:
-            print_card(new_card, name)
-            easygui.msgbox(
-                "The monster you have added has its stats and name "
-                "printed "
-                "below", "Look below")
-            # checks if user is done or wants to make new edits or wants to
-            # cancel
-            check = easygui.buttonbox("Would you like to:",
-                                      "Final step",
-                                      ["Finish", "Edit", "Cancel"])
-            # if user is finished with adding new card
-            if check == "Finish":
-                # adds new card to original list
-                monster_cards.update(new_card)
-                # clears new card ist for next use
-                new_card.clear()
-                # breaks loop
-                return
-            elif check == "Edit":
-                # if user wants to edit new card
-                what_edit = easygui.buttonbox("What would you like "
-                                              "to "
-                                              "change?",
-                                              "Back again",
-                                              ["Name", "Stats"])
-
-                if what_edit == "Name":
-                    name_change = easygui.enterbox("What would you "
-                                                   "like "
-                                                   "to change this "
-                                                   "monster's "
-                                                   "name to?",
-                                                   "Name Change")
-                    if name_change is None:
-                        easygui.msgbox("No changes was added",
-                                       "Edited cancelled")
-                    else:
-                        # changes name
-                        new_card[name_change] = new_card.pop(name)
-                        name = name_change
-                elif what_edit == "Stats":
-                    # asks which stat
-                    what_stat = easygui.buttonbox("Which stat of "
-                                                  "this "
-                                                  "monster would you "
-                                                  "like to "
-                                                  "change?",
-                                                  "Which Stat?",
-                                                  choices=list(new_card
-                                                               [name]
-                                                               .keys()))
-                    # asks for change for that stat
-                    change_stat = easygui.integerbox(f"Enter the new "
-                                                     f"stat for "
-                                                     f"{what_stat}",
-                                                     upperbound=25,
-                                                     lowerbound=1,
-                                                     title="Stat change")
-                    if change_stat is None:
-                        easygui.msgbox("No changes was made",
-                                       "Edited cancelled")
-                    else:
-                        # changes stat
-                        new_card[name][what_stat] = change_stat
-            # if user wants to cancel adding new card
-            elif check == "Cancel":
-                # clears new card ist for next use and breaks loop
-                new_card.clear()
-                return
-
-
 # search and edit and delete
 def search_edit_delete():
     # search for a monster/edit
@@ -157,8 +56,8 @@ def search_edit_delete():
         print("~" * len(monster_search))
         print("Stats:")
         # prints stats
-        for stats, value in monster_cards[monster_search].items():
-            print(f"      {stats}: {value}")
+        for stat, value in monster_cards[monster_search].items():
+            print(f"      {stat}: {value}")
             # adds the entire dictionary under the monster name in
             # edited_card
             edited_card[monster_search] = monster_cards[monster_search]
@@ -240,8 +139,8 @@ def search_edit_delete():
                 print("~" * len(monster_search))
                 print("Stats:")
                 # prints stats
-                for stats, value in edited_card[monster_search].items():
-                    print(f"      {stats}: {value}")
+                for stat, value in edited_card[monster_search].items():
+                    print(f"      {stat}: {value}")
                 easygui.msgbox(f"Changes to {monster_search} has "
                                f"been printed below")
             # when user chooses delete card
@@ -265,24 +164,12 @@ def search_edit_delete():
                                    "Cancelled")
 
 
-# print_card
-def print_card(dictionary, identifier):
-    # prints name
-    print(f"{identifier}")
-    # prints ~ line for aesthetics
-    print("~" * len(identifier))
-    print("Stats:")
-    # prints stats
-    for stats, value in dictionary[identifier].items():
-        print(f"      {stats}: {value}")
-    print()
-
-
 # Main routine
 
 # Welcome message
 easygui.msgbox("Welcome to the Monster card "
                "Dungeon\n~~~~~~~~~~~~~~~~~~~~~~~~~~", "Welcome Traveler")
+
 # Menu/options
 while True:
     # asks what the user wants to do
@@ -293,15 +180,13 @@ while True:
                                 "Exit"])
     # when user chooses add card
     if option == "Add New Monster":
-        add_card()
+        print("Add New monster")
     # when user chooses search/edit
     elif option == "Search for a Monster":
         search_edit_delete()
     # when user chooses show all cards
     elif option == "Show all Monsters":
-        # prints out all cards
-        for card, stat in monster_cards.items():
-            print_card(monster_cards, card)
+        print("Show all Monsters")
     # when user wants to exit program
     else:
-        break
+        print("Exit")
