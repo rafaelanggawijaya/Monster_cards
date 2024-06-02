@@ -287,7 +287,7 @@ def search_edit_delete():
                     del monster_cards[monster_change]
                     easygui.msgbox(
                         f"The monster, {monster_search} has been "
-                        f"removed for the dungeon.", "Monster removed")
+                        f"removed from the dungeon.", "Monster removed")
                     return
                 # When cancelled
                 else:
