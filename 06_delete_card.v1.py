@@ -1,6 +1,5 @@
-"""Monster cards -menu- v1
-This component gives control which part the
-user wants to use and allows the user to pick them
+"""Monster cards -delete card- v1
+Deletes a card from the dictionary when selected by the user
 Update:"""
 
 import easygui
@@ -58,23 +57,24 @@ while True:
             # prints monster stats for user to see and checks if it is in
             # the dictionary
             if monster_search in monster_cards:
-                # prints name
-                print(f"{monster_search}\nStats:\n")
-                # prints stats
-                for stat, value in monster_cards[monster_search].items():
-                    print(f"      {stat}: {value}")
-                easygui.msgbox(
-                    "The monster you have searched has its stats and name "
-                    "printed"
-                    "below")
-
-
-                del monster_cards[monster_search]
-                easygui.msgbox(
-                    f"The monster, {monster_search} has been "
-                    f"removed for the dungeon.")
-
-                break
+                # making sure user wants to delete the card
+                confirm = easygui.buttonbox("Are you sure you want to "
+                                            "delete this monster?",
+                                            "Confirm",
+                                            ["Confirm", "Cancel"])
+                # When confirmed
+                if confirm == "Confirm":
+                    # deletes card
+                    del monster_cards[monster_search]
+                    easygui.msgbox(
+                        f"The monster, {monster_search} has been "
+                        f"removed for the dungeon.")
+                    break
+                # When cancelled
+                else:
+                    easygui.msgbox("Deletion was Cancelled",
+                                   "Cancelled")
+                    break
 
     # when user chooses show all cards
     elif option == "Show all Monsters":

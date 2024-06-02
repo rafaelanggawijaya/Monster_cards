@@ -165,7 +165,7 @@ def search_edit_delete():
         easygui.msgbox(
             "The monster you have searched has its stats and name "
             "printed "
-            "below")
+            "below", "Look below")
         while True:
             # asks user what they will do to searched monster
             do_what = easygui.buttonbox("What would you like to do, "
@@ -200,7 +200,7 @@ def search_edit_delete():
                     # ask what to change
                     change = easygui.buttonbox(
                         "What would you like to "
-                        "change?",
+                        "change?", "Editing",
                         choices=[
                             "Name", "Stat", "Finish"])
                     # changes name
@@ -208,19 +208,25 @@ def search_edit_delete():
                         change_name = easygui.enterbox(
                             f"Please enter the name you would "
                             f"like to "
-                            f"change {monster_search} to:")
+                            f"change {monster_search} to:", "Name Change")
                         edited_card[change_name] = edited_card.pop(
                             monster_search)
                         # prevents error when user wants to change name
                         # and stats
                         monster_search = change_name
+                        # shows changes
+                        print("Changes made:\n")
+                        print_card(edited_card, monster_search)
+                        easygui.msgbox(f"Changes to {monster_search} has "
+                                       f"been printed below", "Look down")
                     # changes stat
                     elif change == "Stat":
                         # Ask which stat
                         which_stat = easygui.buttonbox(
                             f"Which stat would "
                             f"you like to "
-                            f"change", choices=list(
+                            f"change", "Which stat to change?",
+                            choices=list(
                                 edited_card
                                 [monster_search]
                                 .keys()))
@@ -228,22 +234,33 @@ def search_edit_delete():
                         new_stat = easygui.integerbox(
                             f"Please enter the new "
                             f"stat for "
-                            f"{which_stat}")
+                            f"{which_stat}", "Stat Change")
                         # changes stat
                         edited_card[monster_search][
                             which_stat] = new_stat
+                        # shows changes
+                        print("Changes made:\n")
+                        print_card(edited_card, monster_search)
+                        easygui.msgbox(f"Changes to {monster_search} has "
+                                       f"been printed below", "Look down")
                     else:
+                        if edited_card:
+                            # checks if user wants to keep edits
+                            confirm_edits = (easygui.
+                                             choicebox("Would you "
+                                                       "like to keep "
+                                                       "changes?",
+                                                       title="Confirmation",
+                                                       choices=["Confirm",
+                                                                "Cancel"]))
+                            if confirm_edits == "Cancel":
+                                edited_card.clear()
+                                easygui.msgbox("Changes have been "
+                                               "reverted",
+                                               "Cancellation")
+
                         break
-                # prints name
-                print(f"{monster_search}")
-                # prints ~ line for aesthetics
-                print("~" * len(monster_search))
-                print("Stats:")
-                # prints stats
-                for stats, value in edited_card[monster_search].items():
-                    print(f"      {stats}: {value}")
-                easygui.msgbox(f"Changes to {monster_search} has "
-                               f"been printed below")
+
             # when user chooses delete card
             elif do_what == "Delete":
                 # making sure user wants to delete the card
@@ -299,9 +316,12 @@ while True:
         search_edit_delete()
     # when user chooses show all cards
     elif option == "Show all Monsters":
+        print("Monsters in the dungeon\n\n")
         # prints out all cards
         for card, stat in monster_cards.items():
             print_card(monster_cards, card)
+        easygui.msgbox("All cards in the dungeon have been printed below",
+                       "Look down")
     # when user wants to exit program
     else:
         break
