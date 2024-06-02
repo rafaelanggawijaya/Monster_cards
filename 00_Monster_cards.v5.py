@@ -233,12 +233,23 @@ def search_edit_delete():
                                    f"been printed below")
                 # when user chooses delete card
                 elif do_what == "Delete":
-                    # deletes card
-                    del monster_cards[monster_change]
-                    easygui.msgbox(
-                        f"The monster, {monster_search} has been "
-                        f"removed for the dungeon.")
-                    return
+                    # making sure user wants to delete the card
+                    confirm = easygui.buttonbox("Are you sure you want to "
+                                                "delete this monster?",
+                                                "Confirm",
+                                                ["Confirm", "Cancel"])
+                    # When confirmed
+                    if confirm == "Confirm":
+                        # deletes card
+                        del monster_cards[monster_change]
+                        easygui.msgbox(
+                            f"The monster, {monster_search} has been "
+                            f"removed for the dungeon.")
+                        return
+                    # When cancelled
+                    else:
+                        easygui.msgbox("Deletion was Cancelled",
+                                       "Cancelled")
         else:
             # if name not valid
             easygui.msgbox(
