@@ -51,7 +51,7 @@ def add_card():
                           "Cunning": 0}
         for stat_name, stats in new_card[name].items():
             new_stat = easygui.integerbox(
-                f"Please enter the {stat_name} stat"
+                f"Please enter the {stat_name} stat "
                 f"for this monster", upperbound=25, lowerbound=1,
                 title=f"{stat_name} Stat")
             if new_stat is None:
